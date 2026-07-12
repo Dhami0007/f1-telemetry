@@ -39,7 +39,7 @@ def decode_header(data):
 
 def decode_car_telemetry(data, car_index):
     offset = HEADER_SIZE + car_index * CAR_TELEMETRY_SIZE
-    values = struct.unpack_from(CAR_TELEMETRY_FORMAT, data, 0)
+    values = struct.unpack_from(CAR_TELEMETRY_FORMAT, data, offset)
 
     return {
         "speed_kph": values[0],
