@@ -19,7 +19,7 @@ SESSION_DATA_FILENAME = "session.csv"
 LAP_DATA_COLS = ["timestamp", "session_time", "frame_identifier", "player_car_index", "last_lap_time", 
                    "current_lap_time", "sector_1_time_ms", "sector_1_time_min", "sector_2_time_ms", 
                    "sector_2_time_min", "delta_car_ahead_ms", "delta_car_ahead_min", "delta_race_leader_ms", 
-                   "delta_race_leader_min", "lap_distance", "total_distance", "speed_trap_fastest_speed", "speed_trap_fastest_lap"]
+                   "delta_race_leader_min", "lap_distance", "total_distance", "speed_trap_fastest_speed", "speed_trap_fastest_lap", "current_lap_num"]
 
 CAR_TELE_DATA_COLS = ["frame_identifier", "player_car_index", "speed_kph", "throttle", "steer", "brake", "clutch", "gear", "engine_rpm", 
                       "drs", "rev_lights_percent", "rev_lights_bit_value", "brake_temp_rl", "brake_temp_rr", "brake_temp_fl", "brake_temp_fr"]
