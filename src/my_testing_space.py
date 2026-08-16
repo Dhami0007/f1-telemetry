@@ -11,28 +11,41 @@ def fetch_data(file):
 def make_tele_plot(data, lap_num):
 
     lap_spec_data = data[data["current_lap_num"] == lap_num]
+    min_sess_time = lap_spec_data["session_time"].min()
 
     fig, axs = plt.subplots(3,1,sharex=True)
 
-    axs[0].plot(lap_spec_data["session_time"], lap_spec_data["speed_kph"])
-    axs[0].set_title("speed")
+    axs[0].plot(lap_spec_data["session_time"] - min_sess_time, lap_spec_data["speed_kph"], color = "yellow")
+    axs[0].set_title("_", color = "white")
 
-    axs[1].plot(lap_spec_data["session_time"],lap_spec_data["throttle"])
-    axs[1].set_title("throttle")
 
-    axs[2].plot(lap_spec_data["session_time"],lap_spec_data["brake"])
-    axs[2].set_title("braking")
+    axs[1].plot(lap_spec_data["session_time"] - min_sess_time, lap_spec_data["throttle"], color = "red")
+    axs[1].set_title("_", color = "white")
 
-     # data.plot(x="session_time", y="speed_kph")
+
+    axs[2].plot(lap_spec_data["session_time"] - min_sess_time, lap_spec_data["brake"], color = "aqua")
+    axs[2].set_title("_", color = "white")
+
+
+    # data.plot(x="session_time", y="speed_kph")
     # data.plot(x="session_time", y="throttle")
     # data.plot(x="session_time", y="brake")
     for ax in axs:
-        ax.grid(axis="x", which="major", alpha=0.5)
-        ax.grid(axis="x", which="minor", alpha=0.2)
+        ax.grid(axis="x", which="major", alpha=0.5, color = "white")
+        ax.grid(axis="x", which="minor", alpha=0.2, color = "white")
         ax.xaxis.set_minor_locator(AutoMinorLocator(5))
+        # ax.xaxis.label.set_color("white")
+        # ax.yaxis.label.set_color("white")
+        ax.tick_params(axis="x", colors="white")
+        ax.tick_params(axis="y", colors="white")
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(
+            "tele_plots",
+            transparent=True,
+            dpi = 300,
+            bbox_inches="tight"
+        )
 
 def make_raceline(data):
     plt.figure(figsize=(8,8))
@@ -146,9 +159,7 @@ def analyze(data):
 
     plt.hist(data, bins = 15, edgecolor = "black")
     plt.show()
-
     return
-
 
 def make_heatmap(data, lap_num):
 
@@ -189,35 +200,58 @@ def make_heatmap(data, lap_num):
     line_seg1 = LineCollection(segments, linestyle = 'solid', cmap = "turbo", linewidth = 3)
     line_seg1.set_array(segment_speeds)
     fig1.colorbar(line_seg1, ax=ax1)
-    ax1.set_title("Speed heatmap")
+    # ax1.set_title("Speed heatmap")
     ax1.add_collection(line_seg1)
     ax1.autoscale()
     ax1.axis("off")
+    ax1.xaxis.label.set_color("white")
+    ax1.yaxis.label.set_color("white")
     ax1.set_aspect("equal")
 
     # Throttle map
     fig2, ax2 = plt.subplots(figsize=(4,6))
-    line_seg2 = LineCollection(segments, linestyle = 'solid', cmap = "turbo", linewidth = 3)
+    line_seg2 = LineCollection(segments, linestyle = 'solid', cmap = "Reds", linewidth = 3)
     line_seg2.set_array(segment_throttle)
     fig2.colorbar(line_seg2, ax=ax2)
-    ax2.set_title("Throttle heatmap")
+    # ax2.set_title("Throttle heatmap")
     ax2.add_collection(line_seg2)
     ax2.autoscale()
     ax2.axis("off")
+    ax2.xaxis.label.set_color("white")
+    ax2.yaxis.label.set_color("white")
     ax2.set_aspect("equal")
 
     # Braking Map
     fig3, ax3 = plt.subplots(figsize=(4,6))
-    line_seg3 = LineCollection(segments, linestyle = 'solid', cmap = "turbo", linewidth = 3)
+    line_seg3 = LineCollection(segments, linestyle = 'solid', cmap = "Oranges", linewidth = 3)
     line_seg3.set_array(segment_brake)
     fig3.colorbar(line_seg3, ax=ax3)
-    ax3.set_title("Braking heatmap")
+    # ax3.set_title("Brake heatmap")
     ax3.add_collection(line_seg3)
     ax3.autoscale()
     ax3.axis("off")
+    ax3.xaxis.label.set_color("white")
+    ax3.yaxis.label.set_color("white")
     ax3.set_aspect("equal")
 
-    plt.show()
+    fig1.savefig(
+        "Speed heatmap",
+        transparent=True,
+        dpi = 300,
+        bbox_inches="tight"
+    )
+    fig2.savefig(
+            "Throttle heatmap",
+            transparent=True,
+            dpi = 300,
+            bbox_inches="tight"
+        )
+    fig3.savefig(
+            "Brake heatmap",
+            transparent=True,
+            dpi = 300,
+            bbox_inches="tight"
+        )
 
 def main():
     car_tele_file = "./data/processed/player_car_telemetry.csv"
@@ -233,9 +267,9 @@ def main():
     combined_file = "./data/processed/combined_data.csv"
     combined_df = fetch_data(combined_file)
 
-    lap_number = 3
+    lap_number = 4
 
     make_tele_plot(combined_df,lap_number)
-    # make_heatmap(combined_df, lap_number)
+    make_heatmap(combined_df, lap_number)
     
 main()
