@@ -27,7 +27,6 @@ This project records UDP telemetry from F1 25 from me driving around circuit, st
 \- Analyze speed, brake and throttle
 
 
-
 \## Tools
 
 
@@ -39,4 +38,3 @@ This project records UDP telemetry from F1 25 from me driving around circuit, st
 \- UDP sockets
 
 \- Pandas
-
