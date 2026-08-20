@@ -3,7 +3,9 @@
 
 
 This is a Python UDP telemetry fetching and analysis project for F1 2025.
-Check out the ![Final analysis Visual](reports/CANVA_VISUAL.png)
+
+
+![Final analysis Visual](reports/CANVA_VISUAL.png)
 
 
 
