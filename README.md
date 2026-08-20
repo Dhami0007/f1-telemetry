@@ -24,8 +24,7 @@ This project records UDP telemetry from F1 25 from me driving around circuits, s
 
 \- Parse useful telemetry channels
 
-\- Analyze speed, brake, throttle, steering, and lap time
-
+\- Analyze speed, brake and throttle
 
 
 \## Tools
@@ -42,5 +41,4 @@ This project records UDP telemetry from F1 25 from me driving around circuits, s
 
 \- SQLite
 
-\- Power BI
-
+\- Powe
