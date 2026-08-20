@@ -10,7 +10,7 @@ This is a Python UDP telemetry fetching and analysis project for F1 2025.
 
 
 
-This project records UDP telemetry from F1 25 from me driving around circuits, stores driving data, and analyzes lap performance using Python, SQL, and Power BI.
+This project records UDP telemetry from F1 25 from me driving around circuit, stores driving data, and analyzes lap performance using Python
 
 
 
@@ -24,7 +24,7 @@ This project records UDP telemetry from F1 25 from me driving around circuits, s
 
 \- Parse useful telemetry channels
 
-\- Analyze speed, brake, throttle, steering, and lap time
+\- Analyze speed, brake and throttle
 
 
 
@@ -39,8 +39,4 @@ This project records UDP telemetry from F1 25 from me driving around circuits, s
 \- UDP sockets
 
 \- Pandas
-
-\- SQLite
-
-\- Power BI
 
